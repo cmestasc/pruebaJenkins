@@ -3,6 +3,10 @@ pipeline {
         dockerfile true
     }
 
+    options {
+        ansiColor('xterm')
+    }
+
     stages {
         
         stage('Build'){
