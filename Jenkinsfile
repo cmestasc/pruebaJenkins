@@ -6,10 +6,6 @@ pipeline {
         }
     }
 
-    options {
-        ansiColor('xterm')
-    }
-
     stages {
         
         stage('Build'){
