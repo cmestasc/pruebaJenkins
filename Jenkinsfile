@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        dockerfile true
+    }
 
     stages {
         
@@ -11,7 +13,7 @@ pipeline {
         
         stage('Testing') {
             steps {
-                bat "--spec cypress/e2e/1-getting-started/todo.cy.js"
+                sh "--spec cypress/e2e/1-getting-started/todo.cy.js"
             }
         } 
     }
