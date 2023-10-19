@@ -1,8 +1,10 @@
 pipeline {
-    agent { dockerfile true }
-    options {
-        ansiColor('xterm')
+    agent { 
+        filename 'Dockerfile'
+        dir './'
+        label 'my-label'
     }
+
     stages {
         
         stage('Build'){
