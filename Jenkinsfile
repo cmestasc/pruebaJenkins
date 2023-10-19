@@ -1,11 +1,5 @@
 pipeline {
-    agent { 
-        dockerfile {
-            filename 'Dockerfile'
-            dir './'
-            label 'my-label'
-        }
-    }
+    agent any
 
     stages {
         
