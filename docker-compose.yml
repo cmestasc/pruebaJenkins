@@ -1,0 +1,9 @@
+version: '3'
+services:
+  primer-modulo:
+    image: "test-container:1.0.0"
+    command: "--spec cypress/e2e/1-getting-started/todo.cy.js"
+
+  segundo-modulo:
+    image: "test-container:1.0.0"
+    command: "--spec cypress/e2e/2-advanced-examples/actions.cy.js"
