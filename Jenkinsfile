@@ -1,6 +1,8 @@
 pipeline {
     agent { dockerfile true }
-    
+    environment {
+        MAVEN_OPTS = '-Djansi.force=true'
+    }
     options {
         ansiColor('xterm')
     }
