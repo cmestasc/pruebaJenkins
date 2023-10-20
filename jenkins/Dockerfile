@@ -10,4 +10,10 @@ RUN add-apt-repository \
 RUN apt-get update  -qq \
     && apt-get -y install docker-ce
 RUN usermod -aG docker jenkins
-// docker run -it -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home custom-jenkins-docker 
+
+# FROM jenkins/jenkins:lts-jdk11
+# RUN jenkins-plugin-cli --plugins "docker-plugin:1.5 docker-commons:439.va_3cb_0a_6a_fb_29 docker-workflow:572.v950f58993843"
+
+# docker run -it -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home custom-jenkins-docker 
+
+# hudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT = true
