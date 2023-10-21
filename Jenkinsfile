@@ -9,7 +9,7 @@ pipeline {
                 sh "dir"
                 sh "cd cypress"
                 sh "dir"
-                sh "--spec cypress/e2e/1-getting-started/todo.cy.js"
+                sh "npx cypress run --spec cypress/e2e/1-getting-started/todo.cy.js"
             }
         }
     }
