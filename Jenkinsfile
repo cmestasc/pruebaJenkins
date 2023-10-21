@@ -39,7 +39,7 @@ pipeline {
                         script {
                             try {
                             // Run a instance of the image we build. 
-                            sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+                            sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST} --reporter junit"
                             } catch (err) {
                                 // Some test fails. Setting current build as success to execute next stages.
                                 echo "Caught: ${err}"
@@ -126,5 +126,8 @@ pipeline {
         //     }
         // }
 
-    }  
+    } 
+    post {
+        junit 'test-results.xml'
+    }
 }
