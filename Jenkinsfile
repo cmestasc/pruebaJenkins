@@ -31,6 +31,7 @@ pipeline {
             }
         }
 
+        // Run test in parallel (delete stage {} and parallel{} for individual running)
         stage('Run test') {
             parallel {
                 stage('First Test Module'){
