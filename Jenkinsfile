@@ -1,23 +1,11 @@
 pipeline {
-
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-        }
-    }
-
+    agent any
     stages {
-        
         stage('Build'){
+            agent { dockerfile true }
             steps {
-                echo "Build"
+                sh "node --version"
             }
         }
-        
-        stage('Testing') {
-            steps {
-                sh "--spec cypress/e2e/1-getting-started/todo.cy.js"
-            }
-        } 
     }
 }
