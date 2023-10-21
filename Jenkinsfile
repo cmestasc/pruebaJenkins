@@ -5,10 +5,11 @@ pipeline {
             agent { dockerfile true }
             steps {
                 sh "node --version"
+                sh "npm ci"
                 sh "dir"
                 sh "cd cypress"
                 sh "dir"
-                sh "--spec e2e/1-getting-started/todo.cy.js"
+                sh "--spec cypress/e2e/1-getting-started/todo.cy.js"
             }
         }
     }
