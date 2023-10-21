@@ -3,7 +3,7 @@ pipeline {
     environment { 
         IMAGE_NAME = 'clang'
         IMAGE_TAG = '1.0.0'
-        TESTS_PATH = ['cypress/e2e/1-getting-started/todo.cy.js']
+        TEST_PATH_FIRST = 'cypress/e2e/1-getting-started/todo.cy.js'
     }
     options {
         ansiColor('xterm')
@@ -45,7 +45,7 @@ pipeline {
                 script {
                     try {
                     // Run a instance of the image we build. 
-                      sh "docker run -it ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${env.TESTS_PATH[0]}"
+                      sh "docker run -it ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
                     } catch (err) {
                         echo "Caught: ${err}"
                         currentBuild.result = 'SUCCESS'
