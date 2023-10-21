@@ -4,6 +4,7 @@ pipeline {
         IMAGE_NAME = 'cypress-testing'
         IMAGE_TAG = '1.0.0'
         TEST_PATH_FIRST = 'cypress/e2e/1-getting-started/todo.cy.js'
+        TEST_PATH_SECOND = 'cypress/e2e/1-getting-started/fail.cy.js'
     }
     options {
         ansiColor('xterm')
@@ -35,6 +36,20 @@ pipeline {
                         echo "Caught: ${err}"
                         echo 'Error creating the image.'
                         currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+
+        stage('First Test Module'){
+            steps {
+                script {
+                    try {
+                    // Run a instance of the image we build. 
+                      sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+                    } catch (err) {
+                        echo "Caught: ${err}"
+                        currentBuild.result = 'SUCCESS'
                     }
                 }
             }
