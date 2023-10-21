@@ -1,21 +1,18 @@
 pipeline {
     agent any
+    
     environment { 
         IMAGE_NAME = 'cypress-testing'
         IMAGE_TAG = '1.0.0'
         TEST_PATH_FIRST = 'cypress/e2e/1-getting-started/todo.cy.js'
         TEST_PATH_SECOND = 'cypress/e2e/1-getting-started/fail.cy.js'
     }
+
     options {
-        script {
-            try {
-                // Method from a plugin to humanize console output from tests (colors, lines...).
-                ansiColor('xterm')
-            } catch (err) {
-                echo "Caught: ${err}"
-            }
-        }
+        // Method from a plugin to humanize console output from tests (colors, lines...).
+        ansiColor('xterm')
     }
+
     stages {
 
         stage('Build testing image'){
