@@ -6,13 +6,11 @@ pipeline {
     stages {
         
             stage('Primer módulo de test'){
-            agent { dockerfile {args '--spec cypress/e2e/1-getting-started/todo.cy.js'} }
+            agent { dockerfile true }
             steps {
                 script {
                     try {
-                        echo "dir"
-                    // sh "npm ci"
-                    // sh "npx cypress run --spec cypress/e2e/1-getting-started/todo.cy.js"
+                      echo "dir"
                 } catch (err) {
                     echo "Caught: ${err}"
                     currentBuild.result = 'SUCCESS'
