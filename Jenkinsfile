@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     try {
-                      sh "dir"
+                      sh "npx cypress run --spec cypress/e2e/1-getting-started/todo.cy.js"
                 } catch (err) {
                     echo "Caught: ${err}"
                     currentBuild.result = 'SUCCESS'
