@@ -56,12 +56,12 @@ pipeline {
             }
         }
 
-        stage('First Test Module'){
+        stage('Second Test Module'){
             steps {
                 script {
                     try {
                     // Run a instance of the image we build. 
-                      sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+                      sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_SECOND}"
                     } catch (err) {
                         // Some test fails. Setting current build as success to execute next stages.
                         echo "Caught: ${err}"
