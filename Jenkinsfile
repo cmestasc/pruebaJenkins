@@ -5,7 +5,7 @@ pipeline {
             agent { dockerfile true }
             steps {
                 sh "node --version"
-                sh "dir"
+                sh "docker-compose run primer-modulo"
             }
         }
     }
