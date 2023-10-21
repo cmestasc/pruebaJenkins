@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     try {
-                      echo "dir"
+                      sh "dir"
                 } catch (err) {
                     echo "Caught: ${err}"
                     currentBuild.result = 'SUCCESS'
