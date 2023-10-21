@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment { 
-        IMAGE_NAME = 'clang'
+        IMAGE_NAME = 'cypress-testing'
         IMAGE_TAG = '1.0.0'
         TEST_PATH_FIRST = 'cypress/e2e/1-getting-started/todo.cy.js'
     }
@@ -45,7 +45,7 @@ pipeline {
                 script {
                     try {
                     // Run a instance of the image we build. 
-                      sh "docker run -it ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+                      sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
                     } catch (err) {
                         echo "Caught: ${err}"
                         currentBuild.result = 'SUCCESS'
