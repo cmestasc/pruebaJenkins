@@ -7,23 +7,14 @@ pipeline {
         TEST_PATH_SECOND = 'cypress/e2e/1-getting-started/fail.cy.js'
     }
     options {
-        ansiColor('xterm')
+        try {
+            // Method from a plugin to humanize console output from tests (colors, lines...).
+            ansiColor('xterm')
+        } catch (err) {
+            echo "Caught: ${err}"
+        }
     }
     stages {
-        
-        //     stage('Primer módulo de test'){
-        //     agent { dockerfile true }
-        //     steps {
-        //         script {
-        //             try {
-        //               sh "npx cypress run --spec cypress/e2e/1-getting-started/todo.cy.js"
-        //         } catch (err) {
-        //             echo "Caught: ${err}"
-        //             currentBuild.result = 'SUCCESS'
-        //         }
-        //         }
-        //     }
-        // }
 
         stage('Build testing image'){
             steps {
@@ -86,47 +77,5 @@ pipeline {
             }
         }
 
-        // stage('Segundo módulo de test'){
-        //     agent { dockerfile true }
-        //     steps {
-        //         script {
-        //             try {
-        //             sh "npm ci"
-        //             sh "npx cypress run --spec cypress/e2e/1-getting-started/fail.cy.js"
-        //         } catch (err) {
-        //             echo "Caught: ${err}"
-        //             currentBuild.result = 'FAILURE'
-        //         }
-        //         }
-        //     }
-        // }
-
-        // stage('Tercer módulo de test'){
-        //     agent { dockerfile true }
-        //     steps {
-        //         script {
-        //             try {
-        //             sh "npm ci"
-        //             sh "npx cypress run --spec cypress/e2e/1-getting-started/todo.cy.js"
-        //         } catch (err) {
-        //             echo "Caught: ${err}"
-        //             currentBuild.result = 'SUCCESS'
-        //         }
-        //         }
-        //     }
-        // }
-
-        // stage('Cuarto módulo de test'){
-        //     agent { dockerfile true }
-        //     steps {
-        //         try {
-        //             sh "npm ci"
-        //             sh "npx cypress run --spec cypress/e2e/1-getting-started/fail.cy.js"
-        //         } catch (err) {
-        //             echo "Caught: ${err}"
-        //             currentBuild.result = 'SUCCESS'
-        //         }
-        //     }
-        // }
     }  
 }
