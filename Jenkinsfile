@@ -29,7 +29,7 @@ pipeline {
                     sh "npx cypress run --spec cypress/e2e/1-getting-started/fail.cy.js"
                 } catch (err) {
                     echo "Caught: ${err}"
-                    currentBuild.result = 'SUCCESS'
+                    currentBuild.result = 'FAILURE'
                 }
                 }
             }
