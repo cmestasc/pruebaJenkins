@@ -4,7 +4,7 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-        parallel {
+        
             stage('Primer módulo de test'){
             agent { dockerfile true }
             steps {
@@ -44,7 +44,7 @@ pipeline {
                 catchError(stageResult: 'FAILURE') { echo "Fallo en stage" }
             }
         }
-        }
+        
         
     }
 }
