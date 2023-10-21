@@ -5,7 +5,10 @@ pipeline {
             agent { dockerfile true }
             steps {
                 sh "node --version"
-                sh "docker-compose run primer-modulo"
+                sh "dir"
+                sh "cd cypress"
+                sh "dir"
+                sh "--spec e2e/1-getting-started/todo.cy.js"
             }
         }
     }
