@@ -7,11 +7,13 @@ pipeline {
         TEST_PATH_SECOND = 'cypress/e2e/1-getting-started/fail.cy.js'
     }
     options {
-        try {
-            // Method from a plugin to humanize console output from tests (colors, lines...).
-            ansiColor('xterm')
-        } catch (err) {
-            echo "Caught: ${err}"
+        script {
+            try {
+                // Method from a plugin to humanize console output from tests (colors, lines...).
+                ansiColor('xterm')
+            } catch (err) {
+                echo "Caught: ${err}"
+            }
         }
     }
     stages {
