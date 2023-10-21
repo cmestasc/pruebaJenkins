@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     environment { 
         IMAGE_NAME = 'cypress-testing'
         IMAGE_TAG = '1.0.0'
@@ -31,50 +31,99 @@ pipeline {
             }
         }
 
-        stage('First Test Module'){
-            steps {
-                script {
-                    try {
-                    // Run a instance of the image we build. 
-                      sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
-                    } catch (err) {
-                        // Some test fails. Setting current build as success to execute next stages.
-                        echo "Caught: ${err}"
-                        currentBuild.result = 'SUCCESS'
+        stage('Run test') {
+            parallel {
+                stage('First Test Module'){
+                    steps {
+                        script {
+                            try {
+                            // Run a instance of the image we build. 
+                            sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+                            } catch (err) {
+                                // Some test fails. Setting current build as success to execute next stages.
+                                echo "Caught: ${err}"
+                                currentBuild.result = 'SUCCESS'
+                            }
+                        }
+                    }
+                }
+
+                stage('Second Test Module'){
+                    steps {
+                        script {
+                            try {
+                            // Run a instance of the image we build. 
+                            sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_SECOND}"
+                            } catch (err) {
+                                // Some test fails. Setting current build as success to execute next stages.
+                                echo "Caught: ${err}"
+                                currentBuild.result = 'SUCCESS'
+                            }
+                        }
+                    }
+                }
+
+                stage('First Test Module again'){
+                    steps {
+                        script {
+                            try {
+                            // Run a instance of the image we build. 
+                            sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+                            } catch (err) {
+                                // Some test fails. Setting current build as success to execute next stages.
+                                echo "Caught: ${err}"
+                                currentBuild.result = 'SUCCESS'
+                            }
+                        }
                     }
                 }
             }
         }
 
-        stage('Second Test Module'){
-            steps {
-                script {
-                    try {
-                    // Run a instance of the image we build. 
-                      sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_SECOND}"
-                    } catch (err) {
-                        // Some test fails. Setting current build as success to execute next stages.
-                        echo "Caught: ${err}"
-                        currentBuild.result = 'SUCCESS'
-                    }
-                }
-            }
-        }
+        // stage('First Test Module'){
+        //     steps {
+        //         script {
+        //             try {
+        //             // Run a instance of the image we build. 
+        //               sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+        //             } catch (err) {
+        //                 // Some test fails. Setting current build as success to execute next stages.
+        //                 echo "Caught: ${err}"
+        //                 currentBuild.result = 'SUCCESS'
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('First Test Module again'){
-            steps {
-                script {
-                    try {
-                    // Run a instance of the image we build. 
-                      sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
-                    } catch (err) {
-                        // Some test fails. Setting current build as success to execute next stages.
-                        echo "Caught: ${err}"
-                        currentBuild.result = 'SUCCESS'
-                    }
-                }
-            }
-        }
+        // stage('Second Test Module'){
+        //     steps {
+        //         script {
+        //             try {
+        //             // Run a instance of the image we build. 
+        //               sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_SECOND}"
+        //             } catch (err) {
+        //                 // Some test fails. Setting current build as success to execute next stages.
+        //                 echo "Caught: ${err}"
+        //                 currentBuild.result = 'SUCCESS'
+        //             }
+        //         }
+        //     }
+        // }
+
+        // stage('First Test Module again'){
+        //     steps {
+        //         script {
+        //             try {
+        //             // Run a instance of the image we build. 
+        //               sh "docker run ${env.IMAGE_NAME}:${env.IMAGE_TAG} --spec ${TEST_PATH_FIRST}"
+        //             } catch (err) {
+        //                 // Some test fails. Setting current build as success to execute next stages.
+        //                 echo "Caught: ${err}"
+        //                 currentBuild.result = 'SUCCESS'
+        //             }
+        //         }
+        //     }
+        // }
 
     }  
 }
