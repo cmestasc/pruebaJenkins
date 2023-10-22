@@ -15,7 +15,7 @@ pipeline {
 
     parameters {
         choice(name: 'BROWSER', choices: ['chrome', 'firefox', 'edge', 'headless'], description: 'Select browser to run the e2e tests.')
-        booleanparam(name: 'PARAMETERX', description: 'Run the test with X parameter.')
+        booleanParam(name: 'PARAMETERX', description: 'Run the test with X parameter.')
         choice(name: 'URL', choices: ['www.url1.com', 'www.url2.com', 'www.url3.com'], description: 'Select url to run the test.')
     }
 
